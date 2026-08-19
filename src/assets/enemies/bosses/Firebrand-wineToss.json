@@ -1,0 +1,134 @@
+{
+  "frames": {
+    "frame_000": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 389,
+        "h": 405
+      }
+    },
+    "frame_001": {
+      "frame": {
+        "x": 389,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 389,
+        "h": 405
+      }
+    },
+    "frame_002": {
+      "frame": {
+        "x": 778,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 389,
+        "h": 405
+      }
+    },
+    "frame_003": {
+      "frame": {
+        "x": 1167,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 389,
+        "h": 405
+      }
+    },
+    "frame_004": {
+      "frame": {
+        "x": 0,
+        "y": 405,
+        "w": 389,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 389,
+        "h": 405
+      }
+    },
+    "frame_005": {
+      "frame": {
+        "x": 389,
+        "y": 405,
+        "w": 389,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 389,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 389,
+        "h": 405
+      }
+    }
+  },
+  "meta": {
+    "app": "spritesheetgen",
+    "image": "spritesheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1556,
+      "h": 810
+    },
+    "scale": "1"
+  }
+}

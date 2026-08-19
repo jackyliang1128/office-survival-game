@@ -1,28 +1,46 @@
 import Phaser from 'phaser';
 import './style.css';
 
-class BootScene extends Phaser.Scene {
-  constructor() {
-    super({ key: 'BootScene' });
-  }
+import { MenuScene } from './scenes/MenuScene.js';
+import { GameScene } from './scenes/GameScene.js';
+import { HUDScene } from './scenes/HUDScene.js';
+import { UpgradeScene } from './scenes/UpgradeScene.js';
+import { GameOverScene } from './scenes/GameOverScene.js';
+import { BossAlertScene } from './scenes/BossAlertScene.js';
+import { ChaosStageAlertScene } from './scenes/ChaosStageAlertScene.js';
 
-  create() {
-    this.add.text(40, 40, 'Return to the Office', {
-      color: '#ffffff',
-      fontSize: '24px',
-    });
-  }
-}
+const DEBUG = false;
 
-new Phaser.Game({
+const config = {
   type: Phaser.AUTO,
+
   width: 1280,
+
   height: 680,
+
   backgroundColor: '#000000',
   parent: 'game-container',
+
+  // Needed because GameOverScene uses this.add.dom(...)
+  dom: {
+    createContainer: true,
+  },
+
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [BootScene],
-});
+
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { x: 0, y: 0 },
+      debug: DEBUG,
+    },
+  },
+
+   // First scene in the array is the startup scene.
+  scene: [MenuScene, GameScene, HUDScene, UpgradeScene, GameOverScene, BossAlertScene, ChaosStageAlertScene],
+};
+
+new Phaser.Game(config);
