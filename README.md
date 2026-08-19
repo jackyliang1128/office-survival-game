@@ -4,13 +4,13 @@ A top-down office survival game where players battle workplace-themed enemies, c
 
 The game is built with **Phaser 3** and **Vite** and runs entirely in the browser.
 
+The game is inspired by the auto-attacking survival gameplay of *Vampire Survivors*,
+with its own office-themed setting, enemies, upgrades, and progression systems.
+
 ## Getting Started
 
 Make sure you are in the `office-survival-game` folder:
 
-```bash
-cd office-survival-game
-```
 
 Install dependencies:
 
