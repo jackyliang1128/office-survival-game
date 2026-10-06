@@ -39,6 +39,7 @@ export class MenuScene extends Phaser.Scene {
 
   create() {
     const { width, height } = this.scale;
+    this.startRequested = false;
 
     this.cameras.main.setBackgroundColor('#0b0f16');
 
@@ -49,6 +50,47 @@ export class MenuScene extends Phaser.Scene {
     this.makeStartButton(width, height);
     this.bgm = this.sound.add('yoinky-sploinky', { volume: 0.32, loop: true});
     this.bgm.play()
+    this.prepareGame(width, height);
+  }
+
+  prepareGame(width, height) {
+    this.loadingText = this.add.text(width / 2, height * 0.725 + 90, '', {
+      fontSize: '16px', color: '#aac4ff', fontFamily: BODY_FONT,
+    }).setOrigin(0.5).setDepth(12);
+
+    const loader = this.scene.get('AssetLoadingScene');
+    const onProgress = (progress) => {
+      this.loadingText.setText(`Preparing game... ${Math.floor(progress * 100)}%`);
+    };
+    const onReady = () => {
+      this.loadingText.setText('Ready to play');
+      if (this.startRequested) this.startGame();
+    };
+    const onFailed = () => {
+      this.startRequested = false;
+      this.startLabel.setText('RETRY LOADING');
+      this.loadingText.setText('Some assets could not load. Click to retry.');
+    };
+    loader.events.on('assets-progress', onProgress);
+    loader.events.on('assets-ready', onReady);
+    loader.events.on('assets-failed', onFailed);
+    this.events.once('shutdown', () => {
+      loader.events.off('assets-progress', onProgress);
+      loader.events.off('assets-ready', onReady);
+      loader.events.off('assets-failed', onFailed);
+    });
+
+    if (loader.status === 'ready') onReady();
+    else if (loader.status === 'failed') onFailed();
+    else {
+      onProgress(loader.progress);
+      if (!this.scene.isActive('AssetLoadingScene')) this.scene.launch('AssetLoadingScene');
+    }
+  }
+
+  startGame() {
+    this.bgm.stop();
+    this.scene.start('GameScene');
   }
 
   makeBackground(width, height) {
@@ -203,7 +245,7 @@ export class MenuScene extends Phaser.Scene {
       .setInteractive({ useHandCursor: true })
       .setDepth(11);
 
-    this.add.text(width / 2, btnY, 'START GAME', {
+    this.startLabel = this.add.text(width / 2, btnY, 'START GAME', {
       fontSize: '30px',
       color: '#ffffff',
       fontFamily: TITLE_FONT,
@@ -225,8 +267,18 @@ export class MenuScene extends Phaser.Scene {
     });
 
     btnBg.on('pointerdown', () => {
-      this.bgm.stop();
-      this.scene.start('GameScene');
+      if (this.startRequested) return;
+      const loader = this.scene.get('AssetLoadingScene');
+      if (loader.status === 'ready') {
+        this.startGame();
+        return;
+      }
+      this.startRequested = true;
+      this.startLabel.setText('LOADING...');
+      if (loader.status === 'failed') {
+        this.scene.stop('AssetLoadingScene');
+        this.scene.launch('AssetLoadingScene');
+      }
     });
 
     const hint = this.add.text(width / 2, btnY + 58, 'Tap or click to begin', {

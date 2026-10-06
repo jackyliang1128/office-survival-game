@@ -48,6 +48,9 @@ export class GameScene extends Phaser.Scene {
   // preload() runs before create() and is where image/sound files
   // are loaded so the rest of the scene can use them by key.
   preload() {
+    // The title screen loader has already downloaded and decoded these assets.
+    if (this.scene.get('AssetLoadingScene').status === 'ready') return;
+
     this.load.image('hero_main', 'hero/hero.png');
 
     // 8-way walking spritesheets. Each lives under

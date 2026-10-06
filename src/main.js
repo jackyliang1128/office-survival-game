@@ -8,6 +8,7 @@ import { UpgradeScene } from './scenes/UpgradeScene.js';
 import { GameOverScene } from './scenes/GameOverScene.js';
 import { BossAlertScene } from './scenes/BossAlertScene.js';
 import { ChaosStageAlertScene } from './scenes/ChaosStageAlertScene.js';
+import { AssetLoadingScene } from './scenes/AssetLoadingScene.js';
 
 const DEBUG = false;
 
@@ -40,7 +41,7 @@ const config = {
   },
 
    // First scene in the array is the startup scene.
-  scene: [MenuScene, GameScene, HUDScene, UpgradeScene, GameOverScene, BossAlertScene, ChaosStageAlertScene],
+  scene: [MenuScene, GameScene, HUDScene, UpgradeScene, GameOverScene, BossAlertScene, ChaosStageAlertScene, AssetLoadingScene],
 };
 
 new Phaser.Game(config);
