@@ -46,6 +46,12 @@ npm run preview
 
 ## Project Notes
 
+Gameplay and upgrade assets preload in the background while the title screen
+is visible. Start Game begins immediately once they are cached. If clicked
+earlier, the menu shows loading progress and starts automatically when ready.
+Failed downloads can be retried using the same button. The existing asset
+files and gameplay remain unchanged.
+
 The source is organized by gameplay responsibility:
 
 - `src/scenes/` contains the Phaser scenes and game flow.
